@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct LoadingView: View {
-    @Binding var isShowing: Bool
-    
     var body: some View {
         ZStack {
             VStack {
@@ -21,7 +19,6 @@ struct LoadingView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .animation(.easeInOut(duration: 0.3), value: isShowing)
         .background(Color.background)
     }
 }
@@ -33,18 +30,22 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if isLoading {
-                LoadingView(isShowing: $isLoading)
+                LoadingView()
+                
             } else if !isOnBoarding {
                 OnboardingView(isOnboarding: $isOnBoarding)
                 
             } else {
-                MainView()
+                NavigationStack {
+                    LoginView()
+                }
             }
         }
+        .background(Color.background)
         .onAppear {
             // Simula um carregamento inicial de 2 segundos
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation {
+                withAnimation(.snappy(duration: 2)) {
                     isLoading = false
                 }
             }

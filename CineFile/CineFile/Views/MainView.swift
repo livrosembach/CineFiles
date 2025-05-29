@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedTab = 0
-
+    
     var selectedColor: Color {
         switch selectedTab {
         case 0: return .accentColor
@@ -19,7 +19,7 @@ struct MainView: View {
         default: return .accentColor
         }
     }
-
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             MoviesView()
@@ -28,14 +28,14 @@ struct MainView: View {
                         .environment(\.symbolVariants, .none)
                 }
                 .tag(0)
-
+            
             MoviesView()
                 .tabItem {
                     Label("Favoritos", systemImage: "star")
                         .environment(\.symbolVariants, .none)
                 }
                 .tag(1)
-
+            
             MoviesView()
                 .tabItem {
                     Label("Assistidos", systemImage: "checkmark.arrow.trianglehead.counterclockwise")

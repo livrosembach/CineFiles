@@ -11,6 +11,13 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    var valid: Bool {
+        if (email.isEmpty || password.isEmpty) {
+            return false
+        }
+        return true
+    }
+    
     var body: some View {
         ZStack {
             Image("onboarding")
@@ -79,15 +86,18 @@ struct LoginView: View {
                         }
                     }
                     
-                    Button {} label: {
+                    Button {
+                    } label: {
                         Text("Login")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundStyle(Color(.background))
                             .padding(12)
                             .frame(maxWidth: .infinity)
-                            .background(Color(.yellow))
+                            .background(valid ? Color(.yellow) : Color(.systemGray))
                             .cornerRadius(8)
                     }
+                    .opacity(valid ? 1 : 0.5)
+                    .disabled(!valid)
                     
                     Button {} label: {
                         HStack {
@@ -102,7 +112,7 @@ struct LoginView: View {
                         .cornerRadius(8)
                     }
                     .padding(.top, 16)
-                    
+
                     HStack{
                         Text("Não tem uma conta?")
                             .font(.system(size: 18, weight: .regular))
@@ -118,12 +128,7 @@ struct LoginView: View {
                 }
                 .padding(24)
                 .padding(.bottom, 32)
-                .background {
-                    Rectangle()
-                        .foregroundColor(Color(.background))
-                        .opacity(0.5)
-                        .blur(radius: 10, opaque: true)
-                }
+                .background(Color(.background.opacity(0.5)))
             }
         }
     }

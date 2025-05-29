@@ -38,8 +38,7 @@ struct ContentView: View {
                 OnboardingView(isOnboarding: $isOnBoarding)
                 
             } else {
-                // aqui entraria sua home/main view depois do onboarding
-                Text("Main App View")
+                MainView()
             }
         }
         .onAppear {

@@ -7,11 +7,49 @@
 
 import SwiftUI
 
+struct LoadingView: View {
+    @Binding var isShowing: Bool
+    
+    var body: some View {
+        ZStack {
+            VStack {
+                Image("logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .animation(.easeInOut(duration: 0.3), value: isShowing)
+        .background(Color.background)
+    }
+}
+
 struct ContentView: View {
+    @State private var isLoading: Bool = true
     @State private var isOnBoarding: Bool = false
     
     var body: some View {
-        if(!isOnBoarding) { OnboardingView(isOnboarding: $isOnBoarding) }
+        ZStack {
+            if isLoading {
+                LoadingView(isShowing: $isLoading)
+            } else if !isOnBoarding {
+                OnboardingView(isOnboarding: $isOnBoarding)
+                
+            } else {
+                // aqui entraria sua home/main view depois do onboarding
+                Text("Main App View")
+            }
+        }
+        .onAppear {
+            // Simula um carregamento inicial de 2 segundos
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation {
+                    isLoading = false
+                }
+            }
+        }
     }
 }
 

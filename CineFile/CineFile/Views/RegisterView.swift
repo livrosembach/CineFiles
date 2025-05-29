@@ -8,21 +8,24 @@
 import SwiftUI
 
 struct RegisterView: View {
+    
     @State private var email: String = ""
     @State private var password: String = ""
-    @State private var passwordConfirmation: Double = 0
-    @State private var dateOfBirthInt: Int = 0
+    @State private var passwordConfirmation: String = ""
+    @State private var dateOfBirthInt: Double = 0
+    @State private var age: Int = 0
+    @State private var showingAlert: Bool = false
     
     var dateOfBirth: Date {
         Date(timeIntervalSince1970: TimeInterval(dateOfBirthInt * 86400))
     }
     
     var valid: Bool {
-        if (email.isEmpty || password.isEmpty) {
-            return false
-        }
+        if (email.isEmpty || password.isEmpty || passwordConfirmation.isEmpty) { return false }
+        if(password != passwordConfirmation) { return false}
         
-        if (Double(password) == nil || passwordConfirmation.rounded(.down) != Double(password)) {
+        // Verificar idade do usuário
+        if(Int(dateOfBirth.timeIntervalSinceNow / -31536000) != age) {
             return false
         }
         
@@ -44,7 +47,7 @@ struct RegisterView: View {
                     
                     Spacer()
                     
-                    VStack(spacing: 20) { // Conteudo LOGIN
+                    VStack(spacing: 8) { // Conteudo LOGIN
                         Text("Cadastro")
                             .font(.system(size: 32, weight: .heavy))
                             .foregroundStyle(Color(.text))
@@ -98,13 +101,42 @@ struct RegisterView: View {
                         }
                         
                         VStack(alignment: .leading) {
-                            Text("Confirmação de Senha (\(String(format: "%.0f", passwordConfirmation.rounded(.down))))")
+                            Text("Confirmar Senha")
+                                .font(.system(size: 16))
+                                .bold()
+                                .foregroundStyle(Color(.text))
+                            TextField(
+                                "Insira sua senha",
+                                text: $passwordConfirmation,
+                                prompt: Text("Insira sua senha").foregroundColor(Color(.white).opacity(0.5))
+                            )
+                            .tint(Color(.yellow))
+                            .foregroundStyle(Color(.text))
+                            .padding(12)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.white, lineWidth: 1)
+                                    .overlay {
+                                        HStack {
+                                            Spacer()
+                                            Button {} label: {
+                                                Image(systemName: "eye.fill")
+                                                    .foregroundColor(.white)
+                                            }
+                                            .padding(12)
+                                        }
+                                    }
+                            }
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text("Data de nascimento: \(dateOfBirth.formatted(date: .numeric, time: .omitted))")
                                 .font(.system(size: 16))
                                 .bold()
                                 .foregroundStyle(Color(.text))
                             Slider(
-                                value: $passwordConfirmation,
-                                in: 0...16384
+                                value: $dateOfBirthInt,
+                                in: 0...22000
                             )
                             .tint(Color(.yellow))
                             .foregroundStyle(Color(.text))
@@ -116,14 +148,15 @@ struct RegisterView: View {
                                 .bold()
                                 .foregroundStyle(Color(.text))
                             
-                            Stepper(value: $dateOfBirthInt, in: 0...100000) {
-                                Text("\(dateOfBirth.formatted(date: .numeric, time: .omitted))")
+                            Stepper(value: $age, in: 0...120) {
+                                Text("Sua idade é \(age)")
                             }
                             .tint(Color(.yellow))
                             .foregroundStyle(Color(.text))
                         }
                         
                         Button {
+                            showingAlert = true
                         } label: {
                             Text("Cadastrar")
                                 .font(.system(size: 18, weight: .bold))
@@ -135,6 +168,13 @@ struct RegisterView: View {
                         }
                         .disabled(!valid)
                         .opacity(valid ? 1 : 0.3)
+                        .alert("Parabéns", isPresented: $showingAlert) {
+                            Button("Deletar conta", role: .cancel) { }
+                                .backgroundStyle(.black)
+                        } message: {
+                            Text("Você foi cadastrado no CineFilés")
+                                .foregroundStyle(Color(.black))
+                        }
                         
                         HStack(spacing: 4) {
                             Text("Já tem uma conta?")

@@ -1,25 +1,25 @@
 //
-//  MoviesView.swift
+//  WatchedView.swift
 //  CineFile
 //
-//  Created by Livia Rosembach Oliveira on 29/05/25.
+//  Created by Livia Rosembach Oliveira on 30/05/25.
 //
 
 import SwiftUI
 
-struct MoviesView: View {
+struct WatchedView: View {
     
     var movieList: [MovieModel] = MovieModel.movieData
     
     var body: some View {
         ZStack{
             VStack(){
-                HeaderView(logo: "logo-sm-blue")
+                HeaderView(logo: "logo-sm-orange")
                 ScrollView{
                     MainMovieGradientView()
                     
                     VStack(alignment: .leading, spacing: 20){
-                        Text("Todos os filmes")
+                        Text("Assistidos")
                             .font(.system(size: 20, weight: .bold))
                             .fontWidth(.expanded)
                             .foregroundStyle(.white)
@@ -37,5 +37,6 @@ struct MoviesView: View {
 }
 
 #Preview {
-    MoviesView()
+    WatchedView()
 }
+

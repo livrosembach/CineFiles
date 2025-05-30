@@ -37,7 +37,8 @@ struct ContentView: View {
                 
             } else {
                 NavigationStack {
-                    LoginView()
+                    MainView()
+//                    LoginView()
                 }
             }
         }

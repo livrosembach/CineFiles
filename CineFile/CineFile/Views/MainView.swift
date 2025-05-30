@@ -12,13 +12,24 @@ struct MainView: View {
     
     var selectedColor: Color {
         switch selectedTab {
-        case 0: return .accentColor
-        case 1: return .orange
-        case 2: return .blue
-        case 3: return .pink
+        case 0: return Color("BlueColor")
+        case 1: return Color("YellowColor")
+        case 2: return Color("GreenColor")
+        case 3: return Color("PinkColor")
         default: return .accentColor
         }
     }
+    
+    init() {
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            tabBarAppearance.backgroundColor = UIColor.background
+            
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
+        }
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -29,26 +40,32 @@ struct MainView: View {
                 }
                 .tag(0)
             
-            MoviesView()
+            FavoritesView()
                 .tabItem {
                     Label("Favoritos", systemImage: "star")
                         .environment(\.symbolVariants, .none)
                 }
                 .tag(1)
             
-            MoviesView()
+            WatchedView()
                 .tabItem {
                     Label("Assistidos", systemImage: "checkmark.arrow.trianglehead.counterclockwise")
                 }
                 .tag(2)
             
-            MoviesView()
+            ProfileView()
                 .tabItem {
-                    Label("Perfil", systemImage: "person.fill")
+                    Label("Perfil", systemImage: "person")
+                        .environment(\.symbolVariants, .none)
                 }
                 .tag(3)
         }
         .tint(selectedColor)
+
     }
+}
+
+#Preview {
+    MainView()
 }
 

@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showMain = false
     
     var valid: Bool {
         if (email.isEmpty || password.isEmpty) {
@@ -19,118 +20,132 @@ struct LoginView: View {
     }
     
     var body: some View {
-        ZStack {
-            Image("onboarding")
-                .resizable()
-                .ignoresSafeArea(.all)
-                .scaledToFill()
-                .background(Color.background)
-            
-            VStack{
-                Spacer()
+        NavigationStack {
+            ZStack {
                 
-                Image("logo") // Logo CINEFILES
-                
-                Spacer()
-                
-                VStack(spacing: 20) { // Conteudo LOGIN
-                    Text("Login")
-                        .font(.system(size: 32, weight: .heavy))
-                        .foregroundStyle(Color(.text))
+                    Image("onboarding")
+                        .resizable()
+                        .ignoresSafeArea(.all)
+                        .scaledToFill()
+                        .background(Color.background)
                     
-                    VStack(alignment: .leading) {
-                        Text("Email")
-                            .font(.system(size: 16))
-                            .bold()
-                            .foregroundStyle(Color(.text))
-                        TextField(
-                            "Insira seu e-mail",
-                            text: $email,
-                            prompt: Text("Insira seu e-mail").foregroundColor(Color(.white).opacity(0.5))
-                        )
-                        .tint(Color(.yellow))
-                        .foregroundStyle(Color(.text))
-                        .padding(12)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.white, lineWidth: 1)
-                        }
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text("Senha")
-                            .font(.system(size: 16))
-                            .bold()
-                            .foregroundStyle(Color(.text))
-                        SecureField(
-                            "Insira sua senha",
-                            text: $password,
-                            prompt: Text("Insira sua senha").foregroundColor(Color(.white).opacity(0.5))
-                        )
-                        .tint(Color(.yellow))
-                        .foregroundStyle(Color(.text))
-                        .padding(12)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.white, lineWidth: 1)
-                                .overlay {
-                                    HStack {
-                                        Spacer()
-                                        Button {} label: {
-                                            Image(systemName: "eye.fill")
-                                                .foregroundColor(.white)
-                                        }
-                                        .padding(12)
-                                    }
-                                }
-                        }
-                    }
-                    
-                    Button {
-                    } label: {
-                        Text("Login")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundStyle(Color(.background))
-                            .padding(12)
-                            .frame(maxWidth: .infinity)
-                            .background(valid ? Color(.yellow) : Color(.systemGray))
-                            .cornerRadius(8)
-                    }
-                    .opacity(valid ? 1 : 0.5)
-                    .disabled(!valid)
-                    
-                    Button {} label: {
-                        HStack {
-                            Image(systemName: "apple.logo")
-                            Text("Entre com a Apple")
-                        }
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundStyle(.black)
-                        .padding(12)
-                        .frame(maxWidth: .infinity)
-                        .background(.white)
-                        .cornerRadius(8)
-                    }
-                    .padding(.top, 16)
-
-                    HStack{
-                        Text("Não tem uma conta?")
-                            .font(.system(size: 18, weight: .regular))
-                            .padding(.top, 16)
-                            .foregroundStyle(Color(.text))
+                    VStack{
+                        Spacer()
                         
-                        Text("Cadastre-se")
-                            .font(.system(size: 18, weight: .bold))
+                        Image("logo") // Logo CINEFILES
+                        
+                        Spacer()
+                        
+                        VStack(spacing: 20) { // Conteudo LOGIN
+                            Text("Login")
+                                .font(.system(size: 32, weight: .heavy))
+                                .foregroundStyle(Color(.text))
+                            
+                            VStack(alignment: .leading) {
+                                Text("Email")
+                                    .font(.system(size: 16))
+                                    .bold()
+                                    .foregroundStyle(Color(.text))
+                                TextField(
+                                    "Insira seu e-mail",
+                                    text: $email,
+                                    prompt: Text("Insira seu e-mail").foregroundColor(Color(.white).opacity(0.5))
+                                )
+                                .tint(Color(.yellow))
+                                .foregroundStyle(Color(.text))
+                                .padding(12)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.white, lineWidth: 1)
+                                }
+                            }
+                            
+                            VStack(alignment: .leading) {
+                                Text("Senha")
+                                    .font(.system(size: 16))
+                                    .bold()
+                                    .foregroundStyle(Color(.text))
+                                SecureField(
+                                    "Insira sua senha",
+                                    text: $password,
+                                    prompt: Text("Insira sua senha").foregroundColor(Color(.white).opacity(0.5))
+                                )
+                                .tint(Color(.yellow))
+                                .foregroundStyle(Color(.text))
+                                .padding(12)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.white, lineWidth: 1)
+                                        .overlay {
+                                            HStack {
+                                                Spacer()
+                                                Button {} label: {
+                                                    Image(systemName: "eye.fill")
+                                                        .foregroundColor(.white)
+                                                }
+                                                .padding(12)
+                                            }
+                                        }
+                                }
+                            }
+                            
+                            
+                            Button {
+                            } label: {
+                                Text("Login")
+                                    .font(.system(size: 18, weight: .bold))
+                                    .foregroundStyle(Color(.background))
+                                    .padding(12)
+                                    .frame(maxWidth: .infinity)
+                                    .background(valid ? Color(.yellow) : Color(.systemGray))
+                                    .cornerRadius(8)
+                            }
+                            .opacity(valid ? 1 : 0.5)
+                            .disabled(!valid)
+                            .fullScreenCover(isPresented: $showMain) {
+                                MainView()
+                            }
+                            
+                            Button {} label: {
+                                HStack {
+                                    Image(systemName: "apple.logo")
+                                    Text("Entre com a Apple")
+                                }
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundStyle(.black)
+                                .padding(12)
+                                .frame(maxWidth: .infinity)
+                                .background(.white)
+                                .cornerRadius(8)
+                            }
                             .padding(.top, 16)
-                            .foregroundStyle(Color(.yellow))
-                            .underline()
+                            
+                            NavigationLink {
+                                RegisterView()
+                            } label: {
+                                HStack {
+                                    Text("Não tem uma conta?")
+                                        .font(.system(size: 18, weight: .regular))
+                                        .padding(.top, 16)
+                                        .foregroundStyle(Color(.text))
+                                    
+                                    Text("Cadastre-se")
+                                        .font(.system(size: 18, weight: .bold))
+                                        .padding(.top, 16)
+                                        .foregroundStyle(Color(.yellow))
+                                        .underline()
+                                }
+                            }
+
+                            
+                        }
+                        .padding(24)
+                        .padding(.bottom, 32)
+                        .background(Color(.background.opacity(0.5)))
                     }
                 }
-                .padding(24)
-                .padding(.bottom, 32)
-                .background(Color(.background.opacity(0.5)))
             }
-        }
+        
     }
 }
 

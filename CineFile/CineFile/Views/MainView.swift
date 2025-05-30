@@ -9,14 +9,15 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedTab = 0
+    @State private var movieList: [MovieModel] = MovieModel.movieData
     
     var selectedColor: Color {
         switch selectedTab {
-        case 0: return Color("BlueColor")
-        case 1: return Color("YellowColor")
-        case 2: return Color("GreenColor")
-        case 3: return Color("PinkColor")
-        default: return .accentColor
+            case 0: return Color("BlueColor")
+            case 1: return Color("YellowColor")
+            case 2: return Color("GreenColor")
+            case 3: return Color("PinkColor")
+            default: return .accentColor
         }
     }
     
@@ -33,21 +34,21 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            MoviesView()
+            MoviesView(movieList: $movieList)
                 .tabItem {
                     Label("Filmes", systemImage: "movieclapper")
                         .environment(\.symbolVariants, .none)
                 }
                 .tag(0)
             
-            FavoritesView()
+            FavoritesView(movieList: $movieList)
                 .tabItem {
                     Label("Favoritos", systemImage: "star")
                         .environment(\.symbolVariants, .none)
                 }
                 .tag(1)
             
-            WatchedView()
+            WatchedView(movieList: $movieList)
                 .tabItem {
                     Label("Assistidos", systemImage: "checkmark.arrow.trianglehead.counterclockwise")
                 }

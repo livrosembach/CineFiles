@@ -8,35 +8,34 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    
-    var movieList: [MovieModel] = MovieModel.movieData
+    @Binding var movieList: [MovieModel]
     
     var body: some View {
-        ZStack{
-            VStack(){
-                HeaderView(logo: "logo-sm-orange")
-                ScrollView{
-                    MainMovieGradientView()
+        NavigationStack {
+            ZStack{
+                VStack(){
+                    HeaderView(logo: "logo-sm-orange")
+                    ScrollView{
+                        MainMovieGradientView()
+                        
+                        VStack(alignment: .leading, spacing: 20){
+                            Text("Favoritos")
+                                .font(.system(size: 20, weight: .bold))
+                                .fontWidth(.expanded)
+                                .foregroundStyle(.white)
+                            ForEach($movieList){ $movie in
+                                if(movie.isFavorite == true){
+                                    MovieCard(movie: $movie)
+                                }
+                            }
+                        }.padding()
+                    }
                     
-                    VStack(alignment: .leading, spacing: 20){
-                        Text("Favoritos")
-                            .font(.system(size: 20, weight: .bold))
-                            .fontWidth(.expanded)
-                            .foregroundStyle(.white)
-                       ForEach(movieList){ movie in
-                            MovieCard(movie: movie, isFavorite: true, isWatched: true)
-                        }
-                    }.padding()
                 }
-                
-            }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.background)
+            }
         }
     }
-}
-
-#Preview {
-    FavoritesView()
 }
 

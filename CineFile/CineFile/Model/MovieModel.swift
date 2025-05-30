@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-class MovieModel: Identifiable {
+struct MovieModel: Identifiable {
     let id = UUID()
     
     let title: String
@@ -16,11 +17,11 @@ class MovieModel: Identifiable {
     let directing: String
     let screenwriters: String
     let image: String
-    let gradientColor: String
+    let gradientColor: Color
     var isFavorite: Bool = false
     var isWatched: Bool = false
     
-    init(title: String, year: String, synopsis: String, directing: String, screenwriters: String, image: String, gradientColor: String) {
+    init(title: String, year: String, synopsis: String, directing: String, screenwriters: String, image: String, gradientColor: Color) {
         self.title = title
         self.year = year
         self.synopsis = synopsis
@@ -32,7 +33,7 @@ class MovieModel: Identifiable {
 }
 
 extension MovieModel {
-    static let movieData: [MovieModel] = [
+    static var movieData: [MovieModel] = [
         MovieModel(
             title: "Tudo em Todo o Lugar ao Mesmo Tempo",
             year: "2022",
@@ -40,7 +41,7 @@ extension MovieModel {
             directing: "Daniel Kwan, Daniel Scheinert",
             screenwriters: "Daniel Kwan, Daniel Scheinert",
             image: "everything_everywhere_all_at_once",
-            gradientColor: "linear-gradient(to right, #FFC0CB, #FF69B4)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Cisne Negro",
@@ -49,7 +50,7 @@ extension MovieModel {
             directing: "Darren Aronofsky",
             screenwriters: "Mark Heyman, Andres Heinz, John J. McLaughlin",
             image: "black_swan",
-            gradientColor: "linear-gradient(to right, #000000, #434343)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Barbie a princesa e a plebeia",
@@ -58,7 +59,7 @@ extension MovieModel {
             directing: "William Lau",
             screenwriters: "Cliff Ruby, Elana Lesser, Ruth Handler",
             image: "barbie_princess_pauper",
-            gradientColor: "linear-gradient(to right, #EE82EE, #FF00FF)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Show de Truman",
@@ -67,7 +68,7 @@ extension MovieModel {
             directing: "Peter Weir",
             screenwriters: "Peter Weir, Andrew Niccol",
             image: "truman_show",
-            gradientColor: "linear-gradient(to right, #87CEEB, #1E90FF)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Spirit: O Corcel Indomável",
@@ -76,7 +77,7 @@ extension MovieModel {
             directing: "Kelly Asbury, Lorna Cook",
             screenwriters: "John Fusco",
             image: "spirit_stallion",
-            gradientColor: "linear-gradient(to right, #8B4513, #A0522D)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Labirinto do Fauno",
@@ -85,7 +86,7 @@ extension MovieModel {
             directing: "Guillermo del Toro",
             screenwriters: "Guillermo del Toro",
             image: "pans_labyrinth",
-            gradientColor: "linear-gradient(to right, #4B0082, #8A2BE2)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "O Predestinado",
@@ -94,7 +95,7 @@ extension MovieModel {
             directing: "Michael Spierig, Peter Spierig",
             screenwriters: "Michael Spierig, Peter Spierig, Robert A Heinlein (autor da obra original)",
             image: "predestination",
-            gradientColor: "linear-gradient(to right, #2F4F4F, #5F9EA0)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Gigantes de aço",
@@ -103,7 +104,7 @@ extension MovieModel {
             directing: "Shawn Levy",
             screenwriters: "Dan Gilroy, Les Bohem, Jeremy Leven, John Gatins, Richard Matheson (autor da obra original)",
             image: "real_steel",
-            gradientColor: "linear-gradient(to right, #A9A9A9, #778899)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "A vastidão da noite",
@@ -112,7 +113,7 @@ extension MovieModel {
             directing: "Andrew Patterson",
             screenwriters: "James Montague, Craig W. Sanger",
             image: "vast_of_night",
-            gradientColor: "linear-gradient(to right, #191970, #4169E1)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Parasita",
@@ -121,7 +122,7 @@ extension MovieModel {
             directing: "Bong Joon-ho",
             screenwriters: "Bong Joon-ho, Jin Won Han",
             image: "parasite",
-            gradientColor: "linear-gradient(to right, #36454F, #708090)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Passivonas",
@@ -130,7 +131,7 @@ extension MovieModel {
             directing: "Emma Seligman",
             screenwriters: "Emma Seligman, Rachel Sennott",
             image: "bottoms",
-            gradientColor: "linear-gradient(to right, #FF1493, #FF69B4)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "turma da mônica: uma aventura no tempo",
@@ -139,7 +140,7 @@ extension MovieModel {
             directing: "Mauricio de Sousa",
             screenwriters: "Mauricio de Sousa, Flávio de Souza, Didi Oliveira, Emerson Bernardo de Abreu",
             image: "turma_da_monica_time_adventure",
-            gradientColor: "linear-gradient(to right, #FFD700, #FFA500)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Amnésia (Memento)",
@@ -148,7 +149,7 @@ extension MovieModel {
             directing: "Christopher Nolan",
             screenwriters: "Christopher Nolan, Jonathan Nolan",
             image: "memento",
-            gradientColor: "linear-gradient(to right, #696969, #C0C0C0)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Os Excêntricos Tenenbaums",
@@ -157,7 +158,7 @@ extension MovieModel {
             directing: "Wes Anderson",
             screenwriters: "Wes Anderson, Owen Wilson",
             image: "royal_tenenbaums",
-            gradientColor: "linear-gradient(to right, #8B0000, #B22222)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "La la Land",
@@ -166,7 +167,7 @@ extension MovieModel {
             directing: "Damien Chazelle",
             screenwriters: "Damien Chazexlle",
             image: "la_la_land",
-            gradientColor: "linear-gradient(to right, #F0E68C, #FFD700)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Os Serviços de Entrega da Kiki",
@@ -175,7 +176,7 @@ extension MovieModel {
             directing: "Hayao Miyazaki",
             screenwriters: "Hayao Miyazaki, Jack Fletcher, John Semper",
             image: "kikis_delivery_service",
-            gradientColor: "linear-gradient(to right, #ADD8E6, #87CEEB)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "O Feitiço de Áquila",
@@ -184,7 +185,7 @@ extension MovieModel {
             directing: "Richard Donner",
             screenwriters: "Michael Thomas, Tom Mankiewicz",
             image: "ladyhawke",
-            gradientColor: "linear-gradient(to right, #800000, #A52A2A)"
+            gradientColor: .red
         ),
         MovieModel(
             title: "Os incríveis",
@@ -193,7 +194,7 @@ extension MovieModel {
             directing: "Brad Bird",
             screenwriters: "Brad Bird",
             image: "incredibles",
-            gradientColor: "linear-gradient(to right, #FF4500, #FF6347)"
+            gradientColor: .red
         )
     ]
 }

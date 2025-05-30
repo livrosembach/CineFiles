@@ -7,9 +7,11 @@
 
 import SwiftUI
 struct DetailView: View {
+    
     @Binding var movie: MovieModel
     
     var body: some View {
+        ScrollView {
             VStack {
                 HStack(spacing: 16) {
                     Image(movie.image)
@@ -30,7 +32,7 @@ struct DetailView: View {
                     }
                 }
                 .padding(.horizontal, 16)
-                .padding(.top, 80)
+                .padding(.top, 120)
                 .padding(.bottom, 32)
                 .frame(maxWidth: .infinity)
                 .background {
@@ -55,7 +57,7 @@ struct DetailView: View {
                         /// Botao: FAVORITAR OU DESFAVORITAR
                         Button{
                             withAnimation {
-                                movie.isFavorite = !movie.isFavorite
+                                movie.isFavorite.toggle()
                             }
                         } label: {
                             HStack {
@@ -73,7 +75,7 @@ struct DetailView: View {
                         /// Botao: ASSISTIDO ou NAO ASSISTIDO
                         Button{
                             withAnimation {
-                                movie.isWatched = !movie.isWatched
+                                movie.isWatched.toggle()
                             }
                         } label: {
                             HStack {
@@ -109,10 +111,12 @@ struct DetailView: View {
                 }
                 .padding(.horizontal, 16)
             }
-            .frame(minHeight: UIScreen.main.bounds.height, alignment: .top)
-            .padding(.bottom, 32)
-            .background(Color(.background))
-            .foregroundStyle(.white)
+            .toolbarBackground(.hidden, for: .navigationBar)
+        }
+        .frame(minHeight: UIScreen.main.bounds.height, alignment: .top)
+        .padding(.bottom, 32)
+        .background(Color(.background))
+        .foregroundStyle(.white)
     }
 }
 
@@ -124,7 +128,7 @@ struct DetailView: View {
         directing: "Hayao Miyazaki",
         screenwriters: "Hayao Miyazaki, Jack Fletcher, John Semper",
         image: "kikis_delivery_service",
-        gradientColor: "linear-gradient(to right, #ADD8E6, #87CEEB)"
+        gradientColor: .red
     )
     DetailView(movie: $movie)
 }

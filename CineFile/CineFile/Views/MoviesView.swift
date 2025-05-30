@@ -8,34 +8,32 @@
 import SwiftUI
 
 struct MoviesView: View {
-    
-    var movieList: [MovieModel] = MovieModel.movieData
+    @Binding var movieList: [MovieModel]
     
     var body: some View {
-        ZStack{
-            VStack(){
-                HeaderView(logo: "logo-sm-blue")
-                ScrollView{
-                    MainMovieGradientView()
+        NavigationStack {
+            ZStack{
+                VStack(){
+                    HeaderView(logo: "logo-sm-blue")
                     
-                    VStack(alignment: .leading, spacing: 20){
-                        Text("Todos os filmes")
-                            .font(.system(size: 20, weight: .bold))
-                            .fontWidth(.expanded)
-                            .foregroundStyle(.white)
-                       ForEach(movieList){ movie in
-                            MovieCard(movie: movie, isFavorite: true, isWatched: true)
-                        }
-                    }.padding()
+                    ScrollView{
+                        MainMovieGradientView()
+                        
+                        VStack(alignment: .leading, spacing: 20){
+                            Text("Todos os filmes")
+                                .font(.system(size: 20, weight: .bold))
+                                .fontWidth(.expanded)
+                                .foregroundStyle(.white)
+                            ForEach($movieList){ $movie in
+                                MovieCard(movie: $movie)
+                            }
+                        }.padding()
+                    }
+                    
                 }
-                
-            }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.background)
+            }
         }
     }
-}
-
-#Preview {
-    MoviesView()
 }

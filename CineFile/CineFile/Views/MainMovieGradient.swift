@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct MainMovieGradientView: View {
+    let MovieImage: String
+    let MovieColor: Color
     
-    @State private var MovieImage: String = "everything_everywhere_all_at_once"
-    @State private var MovieColor: String = "PinkColor"
+    init () {
+        let randomMovie: MovieModel = MovieModel.movieData[Int.random(in: 0...(MovieModel.movieData.count - 1))]
+        MovieImage = randomMovie.image
+        MovieColor  = randomMovie.gradientColor
+    }
     
     var body: some View {
                 VStack{

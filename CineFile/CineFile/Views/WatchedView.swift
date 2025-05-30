@@ -14,7 +14,7 @@ struct WatchedView: View {
     var body: some View {
         ZStack{
             VStack(){
-                HeaderView(logo: "logo-sm-orange")
+                HeaderView(logo: "logo-sm-green")
                 ScrollView{
                     MainMovieGradientView()
                     

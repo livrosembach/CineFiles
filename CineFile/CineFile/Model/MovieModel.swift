@@ -9,6 +9,7 @@ import Foundation
 
 class MovieModel: Identifiable {
     let id = UUID()
+    
     let title: String
     let year: String
     let synopsis: String
@@ -16,7 +17,9 @@ class MovieModel: Identifiable {
     let screenwriters: String
     let image: String
     let gradientColor: String
-
+    var isFavorite: Bool = false
+    var isWatched: Bool = false
+    
     init(title: String, year: String, synopsis: String, directing: String, screenwriters: String, image: String, gradientColor: String) {
         self.title = title
         self.year = year

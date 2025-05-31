@@ -17,13 +17,9 @@ struct MoviesView: View {
                     HeaderView(logo: "logo-sm-blue")
                     
                     ScrollView{
-                        MainMovieGradientView()
+                        MainMovieGradientView(filter: .all, MovieData: $movieList)
                         
                         VStack(alignment: .leading, spacing: 20){
-                            Text("Todos os filmes")
-                                .font(.system(size: 20, weight: .bold))
-                                .fontWidth(.expanded)
-                                .foregroundStyle(.white)
                             ForEach($movieList){ $movie in
                                 MovieCard(movie: $movie)
                             }

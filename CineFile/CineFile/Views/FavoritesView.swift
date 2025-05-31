@@ -16,13 +16,9 @@ struct FavoritesView: View {
                 VStack(){
                     HeaderView(logo: "logo-sm-orange")
                     ScrollView{
-                        MainMovieGradientView()
+                        MainMovieGradientView(filter: .favorites, MovieData: $movieList)
                         
                         VStack(alignment: .leading, spacing: 20){
-                            Text("Favoritos")
-                                .font(.system(size: 20, weight: .bold))
-                                .fontWidth(.expanded)
-                                .foregroundStyle(.white)
                             ForEach($movieList){ $movie in
                                 if(movie.isFavorite == true){
                                     MovieCard(movie: $movie)

@@ -50,7 +50,7 @@ extension MovieModel {
             directing: "Darren Aronofsky",
             screenwriters: "Mark Heyman, Andres Heinz, John J. McLaughlin",
             image: "black_swan",
-            gradientColor: .red
+            gradientColor: .white
         ),
         MovieModel(
             title: "Barbie a princesa e a plebeia",
@@ -59,7 +59,7 @@ extension MovieModel {
             directing: "William Lau",
             screenwriters: "Cliff Ruby, Elana Lesser, Ruth Handler",
             image: "barbie_princess_pauper",
-            gradientColor: .red
+            gradientColor: .pink
         ),
         MovieModel(
             title: "Show de Truman",
@@ -68,7 +68,7 @@ extension MovieModel {
             directing: "Peter Weir",
             screenwriters: "Peter Weir, Andrew Niccol",
             image: "truman_show",
-            gradientColor: .red
+            gradientColor: .blue
         ),
         MovieModel(
             title: "Spirit: O Corcel Indomável",
@@ -77,7 +77,7 @@ extension MovieModel {
             directing: "Kelly Asbury, Lorna Cook",
             screenwriters: "John Fusco",
             image: "spirit_stallion",
-            gradientColor: .red
+            gradientColor: .green
         ),
         MovieModel(
             title: "Labirinto do Fauno",
@@ -86,7 +86,7 @@ extension MovieModel {
             directing: "Guillermo del Toro",
             screenwriters: "Guillermo del Toro",
             image: "pans_labyrinth",
-            gradientColor: .red
+            gradientColor: .white
         ),
         MovieModel(
             title: "O Predestinado",
@@ -95,7 +95,7 @@ extension MovieModel {
             directing: "Michael Spierig, Peter Spierig",
             screenwriters: "Michael Spierig, Peter Spierig, Robert A Heinlein (autor da obra original)",
             image: "predestination",
-            gradientColor: .red
+            gradientColor: .blue
         ),
         MovieModel(
             title: "Gigantes de aço",
@@ -104,7 +104,7 @@ extension MovieModel {
             directing: "Shawn Levy",
             screenwriters: "Dan Gilroy, Les Bohem, Jeremy Leven, John Gatins, Richard Matheson (autor da obra original)",
             image: "real_steel",
-            gradientColor: .red
+            gradientColor: .blue
         ),
         MovieModel(
             title: "A vastidão da noite",
@@ -113,7 +113,7 @@ extension MovieModel {
             directing: "Andrew Patterson",
             screenwriters: "James Montague, Craig W. Sanger",
             image: "vast_of_night",
-            gradientColor: .red
+            gradientColor: .blue
         ),
         MovieModel(
             title: "Parasita",
@@ -122,7 +122,7 @@ extension MovieModel {
             directing: "Bong Joon-ho",
             screenwriters: "Bong Joon-ho, Jin Won Han",
             image: "parasite",
-            gradientColor: .red
+            gradientColor: .brown
         ),
         MovieModel(
             title: "Passivonas",
@@ -131,16 +131,16 @@ extension MovieModel {
             directing: "Emma Seligman",
             screenwriters: "Emma Seligman, Rachel Sennott",
             image: "bottoms",
-            gradientColor: .red
+            gradientColor: .yellow
         ),
         MovieModel(
-            title: "turma da mônica: uma aventura no tempo",
+            title: "Turma da mônica: uma aventura no tempo",
             year: "2007",
             synopsis: "Franjinha está construindo uma máquina do tempo e precisa reunir moléculas dos quatro elementos: ar, água, fogo e terra. Mônica joga Sansão e, sem querer, acerta o aparelho, espalhando os elementos. Agora a turma precisa consertá-la.",
             directing: "Mauricio de Sousa",
             screenwriters: "Mauricio de Sousa, Flávio de Souza, Didi Oliveira, Emerson Bernardo de Abreu",
             image: "turma_da_monica_time_adventure",
-            gradientColor: .red
+            gradientColor: .blue
         ),
         MovieModel(
             title: "Amnésia (Memento)",
@@ -149,7 +149,7 @@ extension MovieModel {
             directing: "Christopher Nolan",
             screenwriters: "Christopher Nolan, Jonathan Nolan",
             image: "memento",
-            gradientColor: .red
+            gradientColor: .yellow
         ),
         MovieModel(
             title: "Os Excêntricos Tenenbaums",
@@ -158,7 +158,7 @@ extension MovieModel {
             directing: "Wes Anderson",
             screenwriters: "Wes Anderson, Owen Wilson",
             image: "royal_tenenbaums",
-            gradientColor: .red
+            gradientColor: .brown
         ),
         MovieModel(
             title: "La la Land",
@@ -167,7 +167,7 @@ extension MovieModel {
             directing: "Damien Chazelle",
             screenwriters: "Damien Chazexlle",
             image: "la_la_land",
-            gradientColor: .red
+            gradientColor: .purple
         ),
         MovieModel(
             title: "Os Serviços de Entrega da Kiki",
@@ -176,7 +176,7 @@ extension MovieModel {
             directing: "Hayao Miyazaki",
             screenwriters: "Hayao Miyazaki, Jack Fletcher, John Semper",
             image: "kikis_delivery_service",
-            gradientColor: .red
+            gradientColor: .blue
         ),
         MovieModel(
             title: "O Feitiço de Áquila",
@@ -185,7 +185,7 @@ extension MovieModel {
             directing: "Richard Donner",
             screenwriters: "Michael Thomas, Tom Mankiewicz",
             image: "ladyhawke",
-            gradientColor: .red
+            gradientColor: .yellow
         ),
         MovieModel(
             title: "Os incríveis",

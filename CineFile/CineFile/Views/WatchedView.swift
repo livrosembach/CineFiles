@@ -16,13 +16,9 @@ struct WatchedView: View {
                 VStack(){
                     HeaderView(logo: "logo-sm-green")
                     ScrollView{
-                        MainMovieGradientView()
+                        MainMovieGradientView(filter: .watched, MovieData: $movieList)
                         
                         VStack(alignment: .leading, spacing: 20){
-                            Text("Assistidos")
-                                .font(.system(size: 20, weight: .bold))
-                                .fontWidth(.expanded)
-                                .foregroundStyle(.white)
                             ForEach($movieList){ $movie in
                                 if(movie.isWatched == true){
                                     MovieCard(movie: $movie)

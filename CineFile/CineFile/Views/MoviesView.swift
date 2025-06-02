@@ -11,15 +11,6 @@ struct MoviesView: View {
     @Binding var movieList: [MovieModel]
     @State private var searchText: String = ""
 
-    var filteredMovies: [MovieModel] {
-
-        if searchText.isEmpty {
-            return movieList
-        } else {
-            return movieList.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
-        }
-    }
-
     var body: some View {
         NavigationStack {
             ZStack {
@@ -32,9 +23,9 @@ struct MoviesView: View {
                         }
 
                         VStack(alignment: .leading, spacing: 20) {
-                            ForEach(filteredMovies) { movie in
-                                if let index = movieList.firstIndex(where: { $0.id == movie.id }) {
-                                    MovieCard(movie: $movieList[index])
+                            ForEach($movieList) { $movie in
+                                if searchText.isEmpty || movie.title.localizedCaseInsensitiveContains(searchText) {
+                                    MovieCard(movie: $movie)
                                 }
                             }
                         }

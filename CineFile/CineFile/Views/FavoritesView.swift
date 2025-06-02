@@ -11,17 +11,6 @@ struct FavoritesView: View {
     @Binding var movieList: [MovieModel]
     @State private var searchText: String = ""
 
-    var filteredMovies: [MovieModel] {
-
-        let favoritesOnly = movieList.filter { $0.isWatched == true }
-
-        if searchText.isEmpty {
-            return favoritesOnly
-        } else {
-            return favoritesOnly.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
-        }
-    }
-
     var body: some View {
         NavigationStack {
             ZStack {
@@ -34,9 +23,11 @@ struct FavoritesView: View {
                         }
 
                         VStack(alignment: .leading, spacing: 20) {
-                            ForEach(filteredMovies) { movie in
-                                if let index = movieList.firstIndex(where: { $0.id == movie.id }) {
-                                    MovieCard(movie: $movieList[index])
+                            ForEach($movieList) { $movie in
+                                if movie.isFavorite {
+                                    if searchText.isEmpty || movie.title.localizedCaseInsensitiveContains(searchText) {
+                                        MovieCard(movie: $movie)
+                                    }
                                 }
                             }
                         }

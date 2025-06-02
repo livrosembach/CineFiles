@@ -47,7 +47,6 @@ struct ProfileView: View {
                         
                         profileField(label: "Nome", value: "Jane Doe")
                         profileField(label: "Email", value: "jane@example.com")
-                        profileField(label: "Email", value: "jane@example.com")
                         profileField(label: "Data de nascimento", value: "05/05/2005")
                         
                         Spacer()

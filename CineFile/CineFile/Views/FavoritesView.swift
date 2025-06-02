@@ -9,24 +9,39 @@ import SwiftUI
 
 struct FavoritesView: View {
     @Binding var movieList: [MovieModel]
-    
+    @State private var searchText: String = ""
+
+    var filteredMovies: [MovieModel] {
+
+        let favoritesOnly = movieList.filter { $0.isWatched == true }
+
+        if searchText.isEmpty {
+            return favoritesOnly
+        } else {
+            return favoritesOnly.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+
     var body: some View {
         NavigationStack {
-            ZStack{
-                VStack(){
-                    HeaderView(logo: "logo-sm-orange")
-                    ScrollView{
-                        MainMovieGradientView(filter: .favorites, MovieData: $movieList)
-                        
-                        VStack(alignment: .leading, spacing: 20){
-                            ForEach($movieList){ $movie in
-                                if(movie.isFavorite == true){
-                                    MovieCard(movie: $movie)
+            ZStack {
+                VStack {
+                    HeaderView(logo: "logo-sm-orange", searchText: $searchText)
+
+                    ScrollView {
+                        if searchText.isEmpty {
+                            MainMovieGradientView(filter: .favorites, MovieData: $movieList)
+                        }
+
+                        VStack(alignment: .leading, spacing: 20) {
+                            ForEach(filteredMovies) { movie in
+                                if let index = movieList.firstIndex(where: { $0.id == movie.id }) {
+                                    MovieCard(movie: $movieList[index])
                                 }
                             }
-                        }.padding()
+                        }
+                        .padding()
                     }
-                    
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.background)

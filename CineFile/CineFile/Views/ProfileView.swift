@@ -10,6 +10,7 @@ import Charts
 
 struct ProfileView: View {
     @Binding var MovieData: [MovieModel]
+    @State private var searchText = ""
     
     var favoritesList: Double
     var watchedList: Double
@@ -35,7 +36,8 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             VStack {
-                HeaderView(logo: "logo-sm-pink")
+                HeaderView(logo:"logo-sm-pink",searchText: $searchText, showSearch: false)
+
                 
                 ScrollView {
                     VStack(spacing: 20) {
@@ -44,6 +46,7 @@ struct ProfileView: View {
                             .frame(width: 160, height: 160)
                         
                         profileField(label: "Nome", value: "Jane Doe")
+                        profileField(label: "Email", value: "jane@example.com")
                         profileField(label: "Email", value: "jane@example.com")
                         profileField(label: "Data de nascimento", value: "05/05/2005")
                         
@@ -98,4 +101,9 @@ struct ProfileView: View {
         }
         .padding(.horizontal)
     }
+}
+
+
+#Preview {
+    MainView()
 }

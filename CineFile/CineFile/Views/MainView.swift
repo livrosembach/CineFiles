@@ -13,10 +13,10 @@ struct MainView: View {
     
     var selectedColor: Color {
         switch selectedTab {
-            case 0: return Color("BlueColor")
-            case 1: return Color("YellowColor")
-            case 2: return Color("GreenColor")
-            case 3: return Color("PinkColor")
+            case 0: return Color("AppBlue")
+            case 1: return Color("AppYellow")
+            case 2: return Color("AppGreen")
+            case 3: return Color("AppPink")
             default: return .accentColor
         }
     }
@@ -54,7 +54,7 @@ struct MainView: View {
                 }
                 .tag(2)
             
-            ProfileView()
+            ProfileView(MovieData: $movieList)
                 .tabItem {
                     Label("Perfil", systemImage: "person")
                         .environment(\.symbolVariants, .none)

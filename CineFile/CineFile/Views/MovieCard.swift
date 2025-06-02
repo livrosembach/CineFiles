@@ -31,11 +31,11 @@ struct MovieCard: View {
                     HStack(){
                         if movie.isFavorite{
                             Image(systemName: "star.circle.fill")
-                                .foregroundStyle(Color("YellowColor"))
+                                .foregroundStyle(Color("AppYellow"))
                         }
                         if movie.isWatched{
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundStyle(Color("GreenColor"))
+                                .foregroundStyle(Color("AppGreen"))
                         }
                     }
             }

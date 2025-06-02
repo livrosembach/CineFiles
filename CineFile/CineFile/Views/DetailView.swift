@@ -64,12 +64,12 @@ struct DetailView: View {
                                 Image(systemName: "star.circle.fill")
                                 Text(movie.isFavorite ? "Favorito" : "Favoritar")
                             }
-                            .foregroundStyle(Color(movie.isFavorite ? .background : .yellow))
+                            .foregroundStyle(Color(movie.isFavorite ? .background : Color("AppYellow")))
                             .bold()
                             .cornerRadius(8)
                             .frame(maxWidth: .infinity)
                         }
-                        .tint(Color(movie.isFavorite ? .yellow : .gray.opacity(0.1)))
+                        .tint(Color(movie.isFavorite ? Color("AppYellow") : .gray.opacity(0.1)))
                         .buttonStyle(.borderedProminent)
                         
                         /// Botao: ASSISTIDO ou NAO ASSISTIDO
@@ -87,7 +87,7 @@ struct DetailView: View {
                             .cornerRadius(8)
                             .frame(maxWidth: .infinity)
                         }
-                        .tint(Color(movie.isWatched ? .green : .gray.opacity(0.1)))
+                        .tint(Color(movie.isWatched ? Color("AppGreen") : .gray.opacity(0.1)))
                         .buttonStyle(.borderedProminent)
                     }
                     

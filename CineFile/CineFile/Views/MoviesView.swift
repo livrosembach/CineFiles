@@ -25,7 +25,7 @@ struct MoviesView: View {
                         VStack(alignment: .leading, spacing: 20) {
                             ForEach($movieList) { $movie in
                                 if searchText.isEmpty || movie.title.localizedCaseInsensitiveContains(searchText) {
-                                    MovieCard(movie: $movie)
+                                    MovieCard(movie: $movie, isFavorite: false, isWatched: false)
                                 }
                             }
                         }

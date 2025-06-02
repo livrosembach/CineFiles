@@ -32,12 +32,14 @@ struct GaugeView: View {
             Needle(value: value)
                 .stroke(Color.black, lineWidth: 2)
                 .frame(width: 100, height: 100)
+                .foregroundStyle(.white)
 
             // Valor numérico
             Text("\(Int(value))%")
                 .font(.title)
                 .bold()
                 .offset(y: 50)
+                .foregroundStyle(.white)
         }
         .frame(width: 200, height: 200)
     }

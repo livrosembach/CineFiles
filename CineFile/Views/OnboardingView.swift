@@ -50,7 +50,7 @@ struct OnboardingView: View {
                             .foregroundStyle(Color(.background))
                             .padding(12)
                             .frame(maxWidth: .infinity)
-                            .background(Color(.yellow))
+                            .background(Color(.appYellow))
                             .cornerRadius(8)
                             .onTapGesture {
                                 withAnimation {

@@ -9,6 +9,14 @@ import SwiftUI
 struct DetailView: View {
     
     @Binding var movie: MovieModel
+    @State var isFavorite: Bool = false
+    @State var isWatched: Bool = false
+    
+    init(movie: Binding<MovieModel>) {
+        self._movie = movie
+        self._isFavorite = State(initialValue: movie.wrappedValue.isFavorite)
+        self._isWatched = State(initialValue: movie.wrappedValue.isWatched)
+    }
     
     var body: some View {
         ScrollView {
@@ -58,36 +66,38 @@ struct DetailView: View {
                         Button{
                             withAnimation {
                                 movie.isFavorite.toggle()
+                                isFavorite.toggle()
                             }
                         } label: {
                             HStack {
                                 Image(systemName: "star.circle.fill")
-                                Text(movie.isFavorite ? "Favorito" : "Favoritar")
+                                Text(isFavorite ? "Favorito" : "Favoritar")
                             }
-                            .foregroundStyle(Color(movie.isFavorite ? .background : Color("AppYellow")))
+                            .foregroundStyle(Color(isFavorite ? .background : Color(.appYellow)))
                             .bold()
                             .cornerRadius(8)
                             .frame(maxWidth: .infinity)
                         }
-                        .tint(Color(movie.isFavorite ? Color("AppYellow") : .gray.opacity(0.1)))
+                        .tint(Color(isFavorite ? Color(.appYellow) : .gray.opacity(0.1)))
                         .buttonStyle(.borderedProminent)
                         
                         /// Botao: ASSISTIDO ou NAO ASSISTIDO
                         Button{
                             withAnimation {
                                 movie.isWatched.toggle()
+                                isWatched.toggle()
                             }
                         } label: {
                             HStack {
                                 Image(systemName: "eye.fill")
-                                Text(movie.isWatched ? "Assistido" : "Não assistido")
+                                Text(isWatched ? "Assistido" : "Não assistido")
                             }
-                            .foregroundStyle(Color(movie.isWatched ? .background : .white))
+                            .foregroundStyle(Color(isWatched ? .background : .white))
                             .bold()
                             .cornerRadius(8)
                             .frame(maxWidth: .infinity)
                         }
-                        .tint(Color(movie.isWatched ? Color("AppGreen") : .gray.opacity(0.1)))
+                        .tint(Color(isWatched ? Color("AppGreen") : .gray.opacity(0.1)))
                         .buttonStyle(.borderedProminent)
                     }
                     
@@ -130,5 +140,4 @@ struct DetailView: View {
         image: "kikis_delivery_service",
         gradientColor: .red
     )
-    DetailView(movie: $movie)
 }

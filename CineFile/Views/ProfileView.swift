@@ -67,13 +67,13 @@ struct ProfileView: View {
                                 HStack{
                                     Text("Favoritos")
                                         .font(.title2).bold()
-                                        .foregroundColor(Color("AppYellow"))
+                                        .foregroundColor(Color(.appYellow))
                                     Spacer()
                                     Text("\(Int(favoritesList))/\(Int(countMovies))")
                                         .foregroundColor(.white).bold()
                                 }
 
-                                GaugeView(value: favoritePercentage, color: Color("AppYellow"))
+                                GaugeView(value: favoritePercentage, color: Color(.appYellow))
                                     .padding(.top, -10)
                            
                         }

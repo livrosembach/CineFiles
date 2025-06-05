@@ -53,7 +53,7 @@ struct LoginView: View {
                                 text: $email,
                                 prompt: Text("Insira seu e-mail").foregroundColor(Color(.white).opacity(0.5))
                             )
-                            .tint(Color(.yellow))
+                            .tint(Color(.appYellow))
                             .foregroundStyle(Color(.text))
                             .padding(12)
                             .overlay {
@@ -74,7 +74,7 @@ struct LoginView: View {
                                     text: $password,
                                     prompt: Text("Insira sua senha").foregroundColor(Color(.white).opacity(0.5))
                                 )
-                                .tint(Color(.yellow))
+                                .tint(Color(.appYellow))
                                 .foregroundStyle(Color(.text))
                                 .padding(12)
                                 .overlay {
@@ -101,7 +101,7 @@ struct LoginView: View {
                                     text: $password,
                                     prompt: Text("Insira sua senha").foregroundColor(Color(.white).opacity(0.5))
                                 )
-                                .tint(Color(.yellow))
+                                .tint(Color(.appYellow))
                                 .foregroundStyle(Color(.text))
                                 .padding(12)
                                 .overlay {
@@ -136,7 +136,7 @@ struct LoginView: View {
                                 .foregroundStyle(Color(.background))
                                 .padding(12)
                                 .frame(maxWidth: .infinity)
-                                .background(valid ? Color(.yellow) : Color(.systemGray))
+                                .background(valid ? Color(.appYellow) : Color(.systemGray))
                                 .cornerRadius(8)
                         }
                         .opacity(valid ? 1 : 0.5)
@@ -145,7 +145,10 @@ struct LoginView: View {
                             MainView()
                         }
                         
-                        Button {} label: {
+                        Button {
+                            showMainView = true
+                        }
+                        label: {
                             HStack {
                                 Image(systemName: "apple.logo")
                                 Text("Entre com a Apple")
@@ -171,7 +174,7 @@ struct LoginView: View {
                                 Text("Cadastre-se")
                                     .font(.system(size: 18, weight: .bold))
                                     .padding(.top, 16)
-                                    .foregroundStyle(Color(.yellow))
+                                    .foregroundStyle(Color(.appYellow))
                                     .underline()
                             }
                         }

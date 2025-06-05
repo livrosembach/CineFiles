@@ -129,7 +129,7 @@ struct RegisterView: View {
                                         text: $email,
                                         prompt: Text("Insira seu e-mail").foregroundColor(Color(.white).opacity(0.5))
                                     )
-                                    .tint(Color(.yellow))
+                                    .tint(Color(.appYellow))
                                     .foregroundStyle(Color(.text))
                                     .padding(12)
                                     .overlay {
@@ -147,7 +147,7 @@ struct RegisterView: View {
                                         text: $password,
                                         prompt: Text("Insira sua senha").foregroundColor(Color(.white).opacity(0.5))
                                     )
-                                    .tint(Color(.yellow))
+                                    .tint(Color(.appYellow))
                                     .foregroundStyle(Color(.text))
                                     .padding(12)
                                     .overlay {
@@ -165,7 +165,7 @@ struct RegisterView: View {
                                             text: $passwordConfirmation,
                                             prompt: Text("Confirme sua senha").foregroundColor(Color(.white).opacity(0.5))
                                         )
-                                        .tint(Color(.yellow))
+                                        .tint(Color(.appYellow))
                                         .foregroundStyle(Color(.text))
                                         .padding(12)
                                         .overlay {
@@ -183,7 +183,7 @@ struct RegisterView: View {
                                             value: $dateOfBirthInt,
                                             in: 0...22000
                                         )
-                                        .tint(Color(.yellow))
+                                        .tint(Color(.appYellow))
                                         .foregroundStyle(Color(.text))
                                     }
                                     
@@ -196,7 +196,7 @@ struct RegisterView: View {
                                         Stepper(value: $age, in: 0...120) {
                                             Text("Sua idade é \(age)")
                                         }
-                                        .tint(Color(.yellow))
+                                        .tint(Color(.appYellow))
                                         .foregroundStyle(Color(.text))
                                     }
                                 
@@ -214,7 +214,7 @@ struct RegisterView: View {
                                 .foregroundStyle(Color(.background))
                                 .padding(12)
                                 .frame(maxWidth: .infinity)
-                                .background(valid ? Color(.yellow) : Color(.systemGray))
+                                .background(valid ? Color(.appYellow) : Color(.systemGray))
                                 .cornerRadius(8)
                         }
                         .disabled(!valid)
@@ -256,7 +256,7 @@ struct RegisterView: View {
                                 Text("Entre agora")
                                     .font(.system(size: 18, weight: .bold))
                                     .padding(.top, 16)
-                                    .foregroundStyle(Color(.yellow))
+                                    .foregroundStyle(Color(.appYellow))
                                     .underline()
                             }
                         }

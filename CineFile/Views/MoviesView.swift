@@ -24,11 +24,19 @@ struct MoviesView: View {
 
                         VStack(alignment: .leading, spacing: 20) {
                             ForEach($movieList) { $movie in
-                                if searchText.isEmpty || movie.title.localizedCaseInsensitiveContains(searchText) {
-                                    MovieCard(movie: $movie, isFavorite: false, isWatched: false)
+                                if (searchText.isEmpty ||
+                                    movie.title.localizedCaseInsensitiveContains(searchText)) {
+                                    
+                                    NavigationLink {
+                                        DetailView(movie: $movie)
+                                    } label: {
+                                        MovieCard(movie: $movie)
+                                    }
+                                    
                                 }
                             }
                         }
+                        .animation(.default, value: searchText)
                         .padding()
                     }
                 }

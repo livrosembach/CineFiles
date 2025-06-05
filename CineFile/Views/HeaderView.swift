@@ -19,6 +19,7 @@ struct HeaderView: View {
                 Image(logo)
                     .resizable()
                     .frame(width: 60, height: 40)
+                
                 Spacer()
 
                 if showSearch {

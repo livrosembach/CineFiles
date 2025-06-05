@@ -14,7 +14,7 @@ struct MainView: View {
     var selectedColor: Color {
         switch selectedTab {
             case 0: return Color("AppBlue")
-            case 1: return Color("AppYellow")
+            case 1: return Color(.appYellow)
             case 2: return Color("AppGreen")
             case 3: return Color("AppPink")
             default: return .accentColor
